@@ -4,60 +4,11 @@
 
 These notes provide detailed explanations for each section of the AI vs Traditional Architecture presentation, including analogies, technical details, and key talking points.
 
-## 📚 Table of Contents
 
-1. [The Basic Components](#1-the-basic-components)
-   - [Frontend (The Senses)](#-frontend-the-senses-)
-   - [Backend (The Conscious Brain)](#-backend-the-conscious-brain-)
-   - [AI Model (The Subconscious/Instinct)](#-ai-model-the-subconsciousinstinct-)
-   - [Data Store (The Memory)](#-data-store-the-memory-)
-   - [Basic Flow](#-basic-flow)
-
-2. [The Technical Route](#2-the-technical-route)
-   - [Presentation Layer (Frontend)](#-presentation-layer-frontend)
-   - [Application Layer (Backend)](#-application-layer-backend)
-   - [AI/ML Service Layer (Inference)](#-aiml-service-layer-inference)
-   - [Data & Persistence Layer](#-data--persistence-layer)
-
-3. [Example Workflow: Image Description App](#3-example-workflow-image-description-app)
-   - [Step-by-Step Flow](#-step-by-step-flow)
-   - [Key Benefits of This Architecture](#-key-benefits-of-this-architecture)
-
-4. [Guardrails and Hallucinations](#4-guardrails-and-hallucinations)
-   - [Where Hallucination Comes From](#-where-hallucination-comes-from-the-ai-model)
-   - [Where Guardrails Are Implemented](#️-where-guardrails-are-implemented-across-the-architecture)
-
-5. [Vector Databases: The Foundation of AI Apps](#5-vector-databases-the-foundation-of-ai-apps)
-   - [What Are Vector Databases?](#what-are-vector-databases)
-   - [Why They're Essential](#why-theyre-essential)
-   - [Key Benefits](#key-benefits)
-
-6. [RAG vs MCP: Understanding the Fundamental Difference](#6-rag-vs-mcp-understanding-the-fundamental-difference)
-   - [What is RAG?](#what-is-rag)
-   - [What is MCP?](#what-is-mcp)
-   - [Key Differences](#key-differences)
-   - [When to Use Each](#when-to-use-each)
-
-7. [Key Takeaway for Presenters](#-key-takeaway-for-presenters)
-   - [Presentation Tips](#-presentation-tips)
-
----
-
-#**Important**: This is NOT a bug in frontend, backend, or database. It's a fundamental characteristic of generative AI models.
-
----
-
-### 🛡️ Where Guardrails Are Implemented: Across the Architecture
-
-Since hallucination is a model problem, you might think the solution is also only in the model. But in reality, **robust safety requires building fences at multiple points in the system**.
-
-**Guardrails Definition**: Checks, rules, and procedures to catch and control potentially harmful outputs before they reach users.
-
-**Here's where you build them in your architecture**:e Basic Components
-
-Think of an AI application like the human body. It has different parts that work together to perceive the world, think, and act.
+## 1. Basic Understanding of AI Applications
 
 ### 🌐 Frontend (The Senses 👀)
+
 - **What it is**: The User Interface (UI) that users interact with
 - **Role**: The app's eyes, ears, and hands
 - **Functions**: 
@@ -66,6 +17,7 @@ Think of an AI application like the human body. It has different parts that work
   - Manages user interactions
 
 ### 🧠 Backend (The Conscious Brain 🧠)
+
 - **What it is**: The application's main server
 - **Role**: Central coordinator and decision maker
 - **Functions**:
@@ -75,6 +27,7 @@ Think of an AI application like the human body. It has different parts that work
   - Decides what to do with user requests
 
 ### ⚡ AI Model (The Subconscious/Instinct ⚡)
+
 - **What it is**: Specialized "brain" for intelligent tasks
 - **Role**: The core intelligence engine
 - **Functions**:
@@ -85,6 +38,7 @@ Think of an AI application like the human body. It has different parts that work
 - **Key Point**: Doesn't handle user logins - only AI-specific tasks
 
 ### 💾 Data Store (The Memory 💾)
+
 - **What it is**: Information storage system
 - **Role**: The app's memory bank
 - **Contains**:
@@ -94,6 +48,7 @@ Think of an AI application like the human body. It has different parts that work
   - Large knowledge bases and embeddings
 
 ### 🔄 Basic Flow
+
 ```
 Frontend → Backend → AI Model → Backend → Data Store → Frontend
 ```
@@ -111,10 +66,12 @@ Now let's map those basic concepts to the actual technologies and technical arch
 This is the client-side application. The technology choices are standard for web and mobile development.
 
 #### Web Technologies
+
 - **Frameworks**: React, Angular, Vue.js
 - **Key Features**: Real-time updates, streaming responses, multi-modal input
 
 #### Mobile Technologies
+
 - **Native**: Swift/UIKit (iOS), Kotlin/Jetpack Compose (Android)
 - **Cross-platform**: React Native, Flutter
 - **Considerations**: Offline capabilities, camera integration
