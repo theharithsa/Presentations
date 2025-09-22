@@ -4,6 +4,45 @@
 
 These notes provide detailed explanations for each section of the AI vs Traditional Architecture presentation, including analogies, technical details, and key talking points.
 
+## Table of Contents
+
+1. [Basic Understanding of AI Applications](#1-basic-understanding-of-ai-applications)
+   - [Frontend (The Senses)](#frontend-the-senses)
+   - [Backend (The Conscious Brain)](#backend-the-conscious-brain)
+   - [AI Model (The Subconscious/Instinct)](#ai-model-the-subconsciousinstinct)
+   - [Data Store (The Memory)](#data-store-the-memory)
+   - [Basic Flow](#basic-flow)
+
+2. [The Technical Route](#2-the-technical-route)
+   - [Presentation Layer (Frontend)](#presentation-layer-frontend)
+   - [Application Layer (Backend)](#application-layer-backend)
+   - [AI/ML Service Layer (Inference)](#aiml-service-layer-inference)
+   - [Data & Persistence Layer](#data--persistence-layer)
+
+3. [Example Workflow: Image Description App](#3-example-workflow-image-description-app)
+   - [Step-by-Step Flow](#step-by-step-flow)
+   - [Key Benefits of This Architecture](#key-benefits-of-this-architecture)
+
+4. [Guardrails and Hallucinations](#4-guardrails-and-hallucinations)
+   - [Where Hallucination Comes From: The AI Model](#where-hallucination-comes-from-the-ai-model)
+   - [Where Guardrails Are Implemented](#where-guardrails-are-implemented-across-the-architecture)
+
+5. [Vector Databases: The Foundation of AI Apps](#5-vector-databases-the-foundation-of-ai-apps)
+   - [What Are Vector Databases?](#what-are-vector-databases)
+   - [Why They're Essential](#why-theyre-essential)
+   - [Key Benefits](#key-benefits)
+
+6. [RAG vs MCP: Understanding the Fundamental Difference](#6-rag-vs-mcp-understanding-the-fundamental-difference)
+   - [What is RAG?](#what-is-rag)
+   - [What is MCP?](#what-is-mcp)
+   - [Key Differences](#key-differences)
+   - [When to Use Each](#when-to-use-each)
+
+7. [Key Takeaway for Presenters](#key-takeaway-for-presenters)
+   - [Presentation Tips](#presentation-tips)
+
+---
+
 ## 1. Basic Understanding of AI Applications
 
 ### Frontend (The Senses)
