@@ -1,13 +1,12 @@
 # AI Architecture Presenter Notes
 
-## 🎯 Overview
+## Overview
 
 These notes provide detailed explanations for each section of the AI vs Traditional Architecture presentation, including analogies, technical details, and key talking points.
 
-
 ## 1. Basic Understanding of AI Applications
 
-### 🌐 Frontend (The Senses 👀)
+### Frontend (The Senses)
 
 - **What it is**: The User Interface (UI) that users interact with
 - **Role**: The app's eyes, ears, and hands
@@ -16,7 +15,7 @@ These notes provide detailed explanations for each section of the AI vs Traditio
   - Displays results and feedback
   - Manages user interactions
 
-### 🧠 Backend (The Conscious Brain 🧠)
+### Backend (The Conscious Brain)
 
 - **What it is**: The application's main server
 - **Role**: Central coordinator and decision maker
@@ -26,7 +25,7 @@ These notes provide detailed explanations for each section of the AI vs Traditio
   - Processes user input and routes to appropriate services
   - Decides what to do with user requests
 
-### ⚡ AI Model (The Subconscious/Instinct ⚡)
+### AI Model (The Subconscious/Instinct)
 
 - **What it is**: Specialized "brain" for intelligent tasks
 - **Role**: The core intelligence engine
@@ -37,7 +36,7 @@ These notes provide detailed explanations for each section of the AI vs Traditio
   - Takes prepared data and returns inferences
 - **Key Point**: Doesn't handle user logins - only AI-specific tasks
 
-### 💾 Data Store (The Memory 💾)
+### Data Store (The Memory)
 
 - **What it is**: Information storage system
 - **Role**: The app's memory bank
@@ -47,7 +46,7 @@ These notes provide detailed explanations for each section of the AI vs Traditio
   - User interaction logs
   - Large knowledge bases and embeddings
 
-### 🔄 Basic Flow
+### Basic Flow
 
 ```
 Frontend → Backend → AI Model → Backend → Data Store → Frontend
@@ -61,7 +60,7 @@ Frontend → Backend → AI Model → Backend → Data Store → Frontend
 
 Now let's map those basic concepts to the actual technologies and technical architecture. The key difference in an AI app is that the "AI Model" is a separate, dedicated service designed for high performance.
 
-### 🎨 Presentation Layer (Frontend)
+### Presentation Layer (Frontend)
 
 This is the client-side application. The technology choices are standard for web and mobile development.
 
@@ -76,11 +75,11 @@ This is the client-side application. The technology choices are standard for web
 - **Cross-platform**: React Native, Flutter
 - **Considerations**: Offline capabilities, camera integration
 
-### 🔧 Application Layer (Backend)
+### Application Layer (Backend)
 
-This is the central nervous system of your app. It handles business logic and communication between the frontend and the AI services. 
+This is the central nervous system of your app. It handles business logic and communication between the frontend and the AI services.
 
-**🔑 Key Pattern**: Asynchronous processing (AI tasks can be slow!)
+**Key Pattern**: Asynchronous processing (AI tasks can be slow!)
 
 #### API Server
 - **Purpose**: Receives requests from the frontend
@@ -103,7 +102,7 @@ This is the central nervous system of your app. It handles business logic and co
 - **Function**: Heavy lifting and AI model communication
 - **Scaling**: Can run multiple workers across different machines
 
-### 🤖 AI/ML Service Layer (Inference)
+### AI/ML Service Layer (Inference)
 
 Where the trained AI model lives and runs. **Always a separate service** optimized for one thing: running model predictions as fast as possible.
 
@@ -121,7 +120,7 @@ Where the trained AI model lives and runs. **Always a separate service** optimiz
 - **Output**: Model results (probabilities) → Human-readable format
 - **Location**: Handled by Workers before/after model API calls
 
-### 💾 Data & Persistence Layer
+### Data & Persistence Layer
 
 AI apps have more complex data needs than standard applications.
 
@@ -130,7 +129,7 @@ AI apps have more complex data needs than standard applications.
 - **Technologies**: PostgreSQL, MongoDB
 - **Usage**: Same as traditional apps
 
-#### Vector Database ⭐
+#### Vector Database
 - **Purpose**: Store embeddings (numerical representations of data)
 - **Critical for**: Semantic search, recommendations, RAG
 - **Technologies**: Pinecone, ChromaDB, Weaviate, Qdrant
@@ -153,7 +152,7 @@ AI apps have more complex data needs than standard applications.
 
 Let's trace a request through this technical architecture with a concrete example.
 
-### 📱 Step-by-Step Flow
+### Step-by-Step Flow
 
 #### 1. User Action
 **User uploads a picture of their cat on the React frontend**
@@ -199,7 +198,7 @@ Let's trace a request through this technical architecture with a concrete exampl
 - Receives final description when ready
 - Displays result to user
 
-### 🔄 Key Benefits of This Architecture
+### Key Benefits of This Architecture
 - **Non-blocking**: User gets immediate feedback
 - **Scalable**: Multiple workers can process jobs in parallel
 - **Resilient**: Failed jobs can be retried
@@ -215,19 +214,19 @@ Let's trace a request through this technical architecture with a concrete exampl
 
 Let's break down where each comes from within the architecture we just discussed.
 
-### 🚨 Where Hallucination Comes From: The AI Model
+### Where Hallucination Comes From: The AI Model
 
 Hallucination originates almost exclusively from **one place**: the **AI Model Service Layer**.
 
 Specifically, it's an inherent behavioral flaw of modern Large Language Models (LLMs) and other generative models. Here's why it happens:
 
-#### 🤖 It's a Prediction Engine, Not a Knowledge Base
+#### It's a Prediction Engine, Not a Knowledge Base
 - **Core Function**: LLM is sophisticated autocomplete
 - **Process**: Mathematically predicts next most probable word/token
 - **Problem**: Generates statistically plausible text based on training patterns
 - **Reality**: It doesn't "look up" answers in a database
 
-#### 📊 Training Data Gaps and Biases
+#### Training Data Gaps and Biases
 - **Worldview**: Based entirely on training data
 - **Issues**: 
   - Incomplete or outdated information
@@ -235,12 +234,12 @@ Specifically, it's an inherent behavioral flaw of modern Large Language Models (
   - Missing knowledge gaps
 - **Result**: Model generates plausible-sounding but incorrect answers
 
-#### 🌀 "Lost in Thought" Problem
+#### "Lost in Thought" Problem
 - **Complex Reasoning**: Model loses thread of initial facts
 - **Self-referential**: Generates text based on its own previous outputs
 - **Drift**: Leads further away from factual ground truth
 
-#### 💡 Key Insight
+#### Key Insight
 **Hallucination Definition**: Model's tendency to invent facts, details, or sources to create confident-sounding but incorrect output.
 
 **Important**: This is NOT a bug in frontend, backend, or database. It's a fundamental characteristic of generative AI models.
@@ -251,7 +250,7 @@ Since hallucination is a model problem, you might think the solution is also onl
 
 Here’s where you build them in your architecture:
 
-#### 1️⃣ Application Layer (Backend Worker) - Pre-Processing
+#### 1. Application Layer (Backend Worker) - Pre-Processing
 
 **First line of defense** - happens before calling the AI model.
 
@@ -269,7 +268,7 @@ Here’s where you build them in your architecture:
 - **Actions**: Block certain keywords or patterns
 - **Implementation**: Regex patterns, NLP classifiers
 
-#### 2️⃣ AI/ML Service Layer - Model Configuration
+#### 2. AI/ML Service Layer - Model Configuration
 
 **Tweaking model behavior** during inference call itself.
 
@@ -286,7 +285,7 @@ Here’s where you build them in your architecture:
 - **Options**: Less creative, more conservative models
 - **Trade-off**: Accuracy vs. creativity
 
-#### 3️⃣ Application Layer (Backend Worker) - Post-Processing
+#### 3. Application Layer (Backend Worker) - Post-Processing
 
 **Most critical line of defense** - after model generates response but before user sees it.
 
@@ -304,7 +303,7 @@ Here’s where you build them in your architecture:
 - **Confidence Scoring**: Reject low-confidence answers
 - **Judge Model**: Second AI model classifies output as "safe" or "unsafe"
 
-#### 4️⃣ Presentation Layer (Frontend)
+#### 4. Presentation Layer (Frontend)
 
 **UI plays role** in setting expectations and providing final safety layer.
 
@@ -344,29 +343,29 @@ Here’s where you build them in your architecture:
 
 ### Why They're Essential
 
-🔍 **Semantic Search**: Find information based on meaning, not just keywords
+**Semantic Search**: Find information based on meaning, not just keywords
 - Traditional search: "apple" only finds documents with the word "apple"
 - Vector search: "fruit that's red and crunchy" finds apple-related content
 
-🧠 **AI Memory**: Store and retrieve information the way AI models understand it
+**AI Memory**: Store and retrieve information the way AI models understand it
 - Converts text, images, audio into mathematical representations (vectors)
 - AI can quickly find relevant information to answer questions
 
 ### Key Benefits
 
-1️⃣ **Speed**: Lightning-fast similarity searches across millions of documents
+1. **Speed**: Lightning-fast similarity searches across millions of documents
    - Traditional SQL: Slow when searching unstructured data
    - Vector DB: Optimized for high-dimensional similarity queries
 
-2️⃣ **Relevance**: Finds conceptually similar content, not just keyword matches
+2. **Relevance**: Finds conceptually similar content, not just keyword matches
    - Example: Search "car troubles" → finds "automotive problems," "vehicle issues"
    - Understands synonyms and related concepts automatically
 
-3️⃣ **Scalability**: Handles massive amounts of unstructured data
+3. **Scalability**: Handles massive amounts of unstructured data
    - Text documents, images, audio files, code
    - Scales to billions of vectors efficiently
 
-4️⃣ **AI-Native**: Perfect integration with LLMs and AI workflows
+4. **AI-Native**: Perfect integration with LLMs and AI workflows
    - RAG systems: Store knowledge for AI to reference
    - Recommendation engines: Find similar products/content
    - Chatbots: Retrieve relevant context for responses
@@ -381,14 +380,14 @@ Here’s where you build them in your architecture:
 
 **RAG (Retrieval-Augmented Generation)** = AI + Search + Answer
 
-🔍 **How it works**:
+**How it works**:
 1. User asks a question
 2. System searches relevant documents (using vector database)
 3. Finds the most relevant information
 4. Feeds that information to the AI model
 5. AI generates answer based on retrieved information
 
-📚 **Example**: 
+**Example**: 
 - Question: "What's our company's vacation policy?"
 - RAG Process:
   1. Searches employee handbook
@@ -400,13 +399,13 @@ Here’s where you build them in your architecture:
 
 **MCP (Model Context Protocol)** = AI + Tools + Actions
 
-🛠️ **How it works**:
+**How it works**:
 1. User makes a request
 2. AI decides what tools/actions it needs
 3. Executes those tools (API calls, database queries, file operations)
 4. Uses results to fulfill the request
 
-⚙️ **Example**:
+**Example**:
 - Request: "Schedule a meeting with John for next Tuesday"
 - MCP Process:
   1. AI calls calendar API to check availability
@@ -426,29 +425,29 @@ Here’s where you build them in your architecture:
 
 ### When to Use Each
 
-🔍 **Use RAG when**:
+**Use RAG when**:
 - You have lots of documents/knowledge to search through
 - Users ask questions about existing information
 - You need AI to reference specific facts or data
 - Examples: Support chatbots, research assistants, document Q&A
 
-🛠️ **Use MCP when**:
+**Use MCP when**:
 - You want AI to perform actions, not just answer questions
 - Need to integrate with multiple systems/APIs
 - Want to automate workflows and processes
 - Examples: Personal assistants, task automation, system integration
 
-💡 **Pro Tip**: Many advanced AI systems use BOTH RAG and MCP together!
+**Pro Tip**: Many advanced AI systems use BOTH RAG and MCP together!
 - RAG for knowledge retrieval
 - MCP for taking actions based on that knowledge
 
 ---
 
-## 🎯 Key Takeaway for Presenters
+## Key Takeaway for Presenters
 
 **Layer Defense Strategy**: No single guardrail is perfect. Robust AI safety requires multiple checkpoints across the entire architecture, from input validation to user feedback. Each layer catches different types of problems and provides redundancy for critical applications.
 
-### 📝 Presentation Tips
+### Presentation Tips
 
 - **Use Analogies**: The human body analogy helps non-technical audiences understand AI architecture
 - **Emphasize Async Processing**: This is the key difference from traditional architectures
