@@ -15,16 +15,12 @@ This repository contains presentations, resources, and materials from CSE (Custo
 
 ## 📁 Repository Structure
 
+Each episode is organized in its own folder:
 ```
-📦 Presentations/
-├── 📁 AI_Architecture/          # Episode on AI vs Traditional Architectures
-│   ├── index.html              # Interactive presentation
-│   └── README.md               # Episode-specific documentation
-├── 📁 [Episode_Name]/          # Future episodes will follow this pattern
-│   ├── presentation files
-│   ├── code samples
-│   └── documentation
-└── 📄 README.md               # This file
+📁 [Episode_Name]/
+├── presentation files
+├── code samples
+└── documentation
 ```
 
 ## 🚀 How to Use This Repository
@@ -55,20 +51,6 @@ This repository contains presentations, resources, and materials from CSE (Custo
 | Session | Episode Title | About | Presenter | Date | Resources |
 |---------|---------------|--------|-----------|------|-----------|
 | 1 | AI Architecture vs Traditional Architecture | Comprehensive exploration of the evolution from traditional 3-tier systems to modern 5-layer AI architectures. Covers implementation patterns, AI processing pipelines, RAG systems, MCP servers, and practical guidance for teams adopting AI-powered applications. | [@theharithsa](https://github.com/theharithsa) | Sept 22, 2025 | [`AI_Architecture/`](./1_AI_Architecture/) |
-
-### Episode Details
-
-#### Session 1: AI Architecture vs Traditional Architecture
-- **Folder**: `AI_Architecture/`
-- **Format**: Interactive HTML presentation with Mermaid diagrams
-- **Topics**: 
-  - Traditional 3-tier vs 5-layer AI architecture
-  - AI processing pipelines and guardrails
-  - Vector databases and RAG systems
-  - Model Context Protocol (MCP) and agentic AI
-  - Implementation strategies and best practices
-- **Access**: Open `index.html` in your browser
-- **Documentation**: Complete technical guide in `README.md`
 
 *More episodes will be added as CSE Clinic sessions continue...*
 
